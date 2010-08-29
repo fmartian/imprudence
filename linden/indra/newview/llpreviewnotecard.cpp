@@ -35,6 +35,9 @@
 #include "llpreviewnotecard.h"
 
 #include "llinventory.h"
+#include "lliosocket.h"
+#include "llinterface.h"
+
 
 #include "llagent.h"
 #include "llassetuploadresponders.h"
@@ -364,6 +367,13 @@ void LLPreviewNotecard::onLoadComplete(LLVFS *vfs,
 {
 	llinfos << "LLPreviewNotecard::onLoadComplete()" << llendl;
 	LLUUID* item_id = (LLUUID*)user_data;
+
+	Snowglobe::Interface::Packet p( "Notecard", "LoadComplete" ) ;
+	p["Item"]   = *item_id ;
+	p["Asset"]  = asset_uuid ;
+	p["Status"] = status ;
+	p.send() ;
+
 	LLPreviewNotecard* preview = LLPreviewNotecard::getInstance(*item_id);
 	if( preview )
 	{

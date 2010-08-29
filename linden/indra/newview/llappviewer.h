@@ -152,6 +152,8 @@ public:
 	// *NOTE:Mani Fix this for login abstraction!!
 	void handleLoginComplete();
 
+	bool getSecondInstance() const { return mSecondInstance; }
+
 protected:
 
 	virtual bool initWindow(); // Initialize the viewer's window.

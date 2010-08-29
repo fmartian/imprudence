@@ -242,6 +242,7 @@ set(viewer_SOURCE_FILES
     llhudview.cpp
     llimpanel.cpp
     llimview.cpp
+    llinterface.cpp
     llinventoryactions.cpp
     llinventorybridge.cpp
     llinventoryclipboard.cpp
@@ -676,6 +677,7 @@ set(viewer_HEADER_FILES
     llhudview.h
     llimpanel.h
     llimview.h
+    llinterface.h
     llinventorybridge.h
     llinventoryclipboard.h
     llinventorymodel.h

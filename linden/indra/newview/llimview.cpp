@@ -69,6 +69,8 @@
 #include "llviewerregion.h"
 
 #include "llfirstuse.h"
+#include "llsdserialize.h"
+#include "llinterface.h"
 
 //
 // Globals
@@ -565,6 +567,21 @@ void LLIMMgr::addMessage(
 	{
 		return;
 	}
+
+	Snowglobe::Interface::Packet pchat( "ChatterBox", "AddMessage" ) ;
+	pchat["session"]           = session_id;
+	pchat["label"]             = session_name;
+	pchat["target"]            = target_id;
+	pchat["from"]              = from;
+	pchat["message"]           = msg;
+	pchat["dialog"]            = dialog;
+	pchat["estate"]            = (S32) parent_estate_id;
+	pchat["region"]            = region_id;
+	pchat["link"]              = link_name ;
+	pchat["position"]["X"]     = position.mV[0];
+	pchat["position"]["Y"]     = position.mV[1];
+	pchat["position"]["Z"]     = position.mV[2];
+	pchat.send() ;
 
 	//not sure why...but if it is from ourselves we set the target_id
 	//to be NULL
@@ -1308,6 +1325,12 @@ public:
 		if ( success )
 		{
 			session_id = body["session_id"].asUUID();
+
+			Snowglobe::Interface::Packet pchat( "ChatterBox", "UpdateSessionID" ) ;
+			pchat["session"]           = session_id;
+			pchat["temporary"]         = temp_session_id;
+			pchat.send() ;
+
 			gIMMgr->updateFloaterSessionID(
 				temp_session_id,
 				session_id);

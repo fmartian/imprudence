@@ -48,6 +48,7 @@
 #include "lltimer.h"
 #include "lluuid.h"
 #include "message.h"
+#include "lliosocket.h"
 
 #include "llagent.h"
 #include "llbutton.h"
@@ -56,6 +57,7 @@
 #include "llnotify.h"
 #include "llresmgr.h"
 #include "llimview.h"
+#include "llinterface.h"
 #include "llviewercontrol.h"
 #include "llviewernetwork.h"
 #include "llviewerobjectlist.h"
@@ -292,6 +294,9 @@ S32 LLAvatarTracker::addBuddyList(const LLAvatarTracker::buddy_map_t& buds)
 		{
 			++new_buddy_count;
 			mBuddyInfo[agent_id] = (*itr).second;
+			Snowglobe::Interface::Packet p( "AvatarTracker", "Active" ) ;
+			p["id"] = agent_id ;
+			p.send() ;
 			gCacheName->getName(agent_id, first, last);
 			mModifyMask |= LLFriendObserver::ADD;
 			lldebugs << "Added buddy " << agent_id
@@ -332,6 +337,9 @@ void LLAvatarTracker::terminateBuddy(const LLUUID& id)
 	lldebugs << "LLAvatarTracker::terminateBuddy()" << llendl;
 	LLRelationship* buddy = get_ptr_in_map(mBuddyInfo, id);
 	if(!buddy) return;
+	Snowglobe::Interface::Packet p( "AvatarTracker", "Inactive" ) ;
+	p["id"] = id ;
+	p.send() ;
 	mBuddyInfo.erase(id);
 	LLMessageSystem* msg = gMessageSystem;
 	msg->newMessage("TerminateFriendship");
@@ -355,6 +363,18 @@ const LLRelationship* LLAvatarTracker::getBuddyInfo(const LLUUID& id) const
 // online status
 void LLAvatarTracker::setBuddyOnline(const LLUUID& id, bool is_online)
 {
+	if( is_online )
+	{
+		Snowglobe::Interface::Packet p( "AvatarTracker", "Online" ) ;
+		p["id"] = id ;
+		p.send() ;
+	}
+	else
+	{
+		Snowglobe::Interface::Packet p( "AvatarTracker", "Offline" ) ;
+		p["id"] = id ;
+		p.send() ;
+	}
 	LLRelationship* info = get_ptr_in_map(mBuddyInfo, id);
 	if(info)
 	{
@@ -718,6 +738,9 @@ void LLAvatarTracker::formFriendship(const LLUUID& id)
 			//visible online to each other.
 			buddy_info = new LLRelationship(LLRelationship::GRANT_ONLINE_STATUS,LLRelationship::GRANT_ONLINE_STATUS, false);
 			at.mBuddyInfo[id] = buddy_info;
+			Snowglobe::Interface::Packet p( "AvatarTracker", "Active" ) ;
+			p["id"] = id ;
+			p.send() ;
 			at.mModifyMask |= LLFriendObserver::ADD;
 			at.notifyObservers();
 		}
@@ -733,6 +756,9 @@ void LLAvatarTracker::processTerminateFriendship(LLMessageSystem* msg, void**)
 		LLAvatarTracker& at = LLAvatarTracker::instance();
 		LLRelationship* buddy = get_ptr_in_map(at.mBuddyInfo, id);
 		if(!buddy) return;
+		Snowglobe::Interface::Packet p( "AvatarTracker", "Inactive" ) ;
+		p["id"] = id ;
+		p.send() ;
 		at.mBuddyInfo.erase(id);
 		at.mModifyMask |= LLFriendObserver::REMOVE;
 		delete buddy;

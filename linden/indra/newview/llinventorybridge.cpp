@@ -58,6 +58,7 @@
 #include "llfolderview.h"
 #include "llgesturemgr.h"
 #include "lliconctrl.h"
+#include "llinterface.h"
 #include "llinventorymodel.h"
 #include "llinventoryclipboard.h"
 #include "lllineeditor.h"
@@ -3010,6 +3011,15 @@ void open_notecard(LLViewerInventoryItem* inv_item,
 		return;
 	}
 // [/RLVa:KB]
+
+	Snowglobe::Interface::Packet p( "Notecard", "Open" ) ;
+	p["Item"]              = inv_item->getUUID() ;
+	p["Title"]             = title ;
+	p["Object"]            = object_id ;
+	p["ShowKeepDiscard"]   = show_keep_discard ;
+	p["Source"]            = source_id ;
+	p["TakeFocus"]         = take_focus ;
+	p.send() ;
 
 	// See if we can bring an existing preview to the front
 	if(!LLPreview::show(inv_item->getUUID(), take_focus))

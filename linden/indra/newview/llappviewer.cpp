@@ -170,6 +170,7 @@
 #include "llparcel.h"
 #include "viewertime.h"
 
+#include "llinterface.h"
 #include "llinventoryview.h"
 
 #include "llcommandlineparser.h"
@@ -906,7 +907,9 @@ bool LLAppViewer::mainLoop()
 
 	LLVoiceChannel::initClass();
 	LLVoiceClient::init(gServicePump);
-				
+
+	Snowglobe::Interface::init(gServicePump);
+
 	LLMemType mt1(LLMemType::MTYPE_MAIN);
 	LLTimer frameTimer,idleTimer;
 	LLTimer debugTime;
@@ -3533,6 +3536,8 @@ void LLAppViewer::idle()
 		gGestureManager.update();
 
 		gAgent.updateAgentPosition(gFrameDTClamped, yaw, current_mouse.mX, current_mouse.mY);
+
+		Snowglobe::Interface::update();
 	}
 
 	{

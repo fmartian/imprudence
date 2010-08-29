@@ -47,6 +47,7 @@
 #include "llerror.h"
 #include "llstring.h"
 #include "message.h"
+#include "llinterface.h"
 
 // project include
 #include "llagent.h"
@@ -433,6 +434,22 @@ void LLFloaterChat::addChat(const LLChat& chat,
 			  BOOL from_instant_message, 
 			  BOOL local_agent)
 {
+	Snowglobe::Interface::Packet pchat( "FloaterChat", "AddChat" ) ;
+	pchat["text"]              = chat.mText ;
+	pchat["from"]              = chat.mFromName ;
+	pchat["from_id"]           = chat.mFromID ;
+	pchat["source"]            = (S32) chat.mSourceType ;
+	pchat["type"]              = (S32) chat.mChatType ;
+	pchat["audible"]           = (S32) chat.mAudible ;
+	pchat["muted"]             = (LLSD::Boolean) chat.mMuted ;
+	pchat["time"]              = chat.mTime ;
+	pchat["position"]["X"]     = chat.mPosAgent.mV[0] ;
+	pchat["position"]["Y"]     = chat.mPosAgent.mV[1] ;
+	pchat["position"]["Z"]     = chat.mPosAgent.mV[2] ;
+	pchat["from_im"]           = (LLSD::Boolean) from_instant_message ;
+	pchat["local_agent"]       = (LLSD::Boolean) local_agent ;
+	pchat.send() ;
+
 	LLColor4 text_color = get_text_color(chat);
 
 	BOOL invisible_script_debug_chat = 

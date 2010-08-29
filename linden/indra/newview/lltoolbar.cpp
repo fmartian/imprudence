@@ -66,6 +66,7 @@
 #include "llfloatermute.h"
 #include "llimpanel.h"
 #include "llscrolllistctrl.h"
+#include "llinterface.h"
 
 #if LL_DARWIN
 
@@ -382,6 +383,12 @@ void LLToolBar::onClickCommunicate(LLUICtrl* ctrl, void* user_data)
 	
 	LLSD selected_option = communicate_button->getValue();
     
+	Snowglobe::Interface::Packet p( "ChatterBox", "OnActivateToolbarButton");
+	p["option"] = selected_option ;
+	p.send() ;
+
+	// TODO:DZ test a ControlGroup variable to do below or return
+
 	if (selected_option.asString() == "contacts")
 	{
 		LLFloaterMyFriends::showInstance();

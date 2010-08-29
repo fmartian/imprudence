@@ -1349,6 +1349,54 @@
     <key>Value</key>
     <real>300.0</real>
   </map>
+
+  <!-- Begin: Snowglobe API -->
+  <key>InterfaceAllowConnections</key>
+  <map>
+    <key>Comment</key>
+    <string>Allow any connection to the Snowglobe API</string>
+    <key>Persist</key>
+    <integer>1</integer>
+    <key>Type</key>
+    <string>Boolean</string>
+    <key>Value</key>
+    <integer>1</integer>
+  </map>
+  <key>InterfaceAllowRemoteConnections</key>
+  <map>
+    <key>Comment</key>
+    <string>Allow remote connections to the Snowglobe API</string>
+    <key>Persist</key>
+    <integer>1</integer>
+    <key>Type</key>
+    <string>Boolean</string>
+    <key>Value</key>
+    <integer>0</integer>
+  </map>
+  <key>InterfaceVerifySessionCookie</key>
+  <map>
+    <key>Comment</key>
+    <string>Verify session cookie as a credential measure to the Snowglobe API</string>
+    <key>Persist</key>
+    <integer>1</integer>
+    <key>Type</key>
+    <string>Boolean</string>
+    <key>Value</key>
+    <integer>0</integer>
+  </map>
+  <key>InterfaceServerPort</key>
+  <map>
+    <key>Comment</key>
+    <string>Server port of the Snowglobe API</string>
+    <key>Persist</key>
+    <integer>1</integer>
+    <key>Type</key>
+    <string>S32</string>
+    <key>Value</key>
+    <integer>50140</integer>
+  </map>
+  <!-- End: Snowglobe API -->
+
   <key>AdvanceSnapshot</key>
   <map>
     <key>Comment</key>
