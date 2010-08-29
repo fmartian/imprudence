@@ -115,6 +115,7 @@ public:
 	static void useLoginScreen();
 	static void callbackClientTags(const LLSD& notification, const LLSD& response);
 	static void ClientTags();
+	static void voiceLicenseAgreement();
 	
 protected:
 	static std::set<std::string> sConfigVariables;
@@ -129,7 +130,7 @@ public:
 
 	static void warnRlvGiveToRLV();
 protected:
-	static void onRlvGiveToRLVConfirmation(S32 idxOption, void* pUserParam);
+	static void onRlvGiveToRLVConfirmation(const LLSD& notification, const LLSD& response);
 // [/RLVa:KB]
 };
 

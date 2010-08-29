@@ -93,10 +93,12 @@
 #else
 #include "boost/lexical_cast.hpp"
 #endif
+#include "hippoLimits.h"// getMaxPrimScale
+
 // [RLVa:KB]
 #include "llstartup.h"
 // [/RLVa:KB]
-#include "hippoLimits.h"// getMaxPrimScale
+
 using namespace LLVOAvatarDefines;
 
 //-----------------------------------------------------------------------------
@@ -3428,7 +3430,7 @@ void LLVOAvatar::resolveClient(LLColor4& avatar_name_color, std::string& client,
 	}
 	if(avatar->getTE(5)->getID() != avatar->getTE(6)->getID() && !client.empty())
 	{
-		client = "Failure";
+		client = "Unknown";
 		avatar_name_color = LLColor4::grey;
 	}
 	if(client.empty() && LLVOAvatar::sClientResolutionList.has("default"))
@@ -3626,29 +3628,32 @@ void LLVOAvatar::idleUpdateNameTag(const LLVector3& root_pos_last)
 				|| is_appearance != mNameAppearance || client.length() != 0)
 			{
 				std::string line;
-
-				if (mRenderGroupTitles && title && title->getString() && title->getString()[0] != '\0')
+// [RLVa:KB] - Version: 1.23.4 | Checked: 2009-07-08 (RLVa-1.0.0e) | Added: RLVa-0.2.0b
+				if (!fRlvShowNames)
 				{
-					line += title->getString();
-					//LLStringFn::replace_ascii_controlchars(line,LL_UNKNOWN_CHAR); IMP-136 -- McCabe
-					line += "\n";
-					line += firstname->getString();
+// [/RLVa:KB]
+					if (mRenderGroupTitles && title && title->getString() && title->getString()[0] != '\0')
+					{
+						line += title->getString();
+						//LLStringFn::replace_ascii_controlchars(line,LL_UNKNOWN_CHAR); IMP-136 -- McCabe
+						line += "\n";
+						line += firstname->getString();
+					}
+					else
+					{
+						line += firstname->getString();
+					}
+
+					line += " ";
+					line += lastname->getString();
+// [RLVa:KB] - Version: 1.23.4 | Checked: 2009-07-08 (RLVa-1.0.0e) | Added: RLVa-0.2.0b
 				}
 				else
 				{
-					line += firstname->getString();
-				}
-
-				line += " ";
-				line += lastname->getString();
-
-// [RLVa:KB]
-				if (fRlvShowNames)
- 				{
-					// User is not allowed to see who it is, due to RLV settings.
-					line = gRlvHandler.getAnonym(line);
+					line = gRlvHandler.getAnonym(line.assign(firstname->getString()).append(" ").append(lastname->getString()));
 				}
 // [/RLVa:KB]
+
 
 				BOOL need_comma = FALSE;
 

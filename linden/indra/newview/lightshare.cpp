@@ -63,8 +63,7 @@ WindlightMessage::WindlightMessage( LLMessageSystem* msg ) :
 		return; // Wrong message type, somehow.
 	}
 
-	S32 size = msg->getSizeFast(_PREHASH_ParamList, 0,
-															_PREHASH_Parameter);
+	S32 size = msg->getSizeFast(_PREHASH_ParamList, 0, _PREHASH_Parameter);
 
 	if( size < 0 || 250 < size )
 	{
@@ -74,11 +73,15 @@ WindlightMessage::WindlightMessage( LLMessageSystem* msg ) :
 	// Unpack and process the message's binary payload.
 	char buf[250];
 	msg->getBinaryDataFast(_PREHASH_ParamList,
-												 _PREHASH_Parameter,
-												 buf, size, 0, 249);
+				 _PREHASH_Parameter,
+				 buf, size, 0, 249);
 
 	mWater = new LLWaterParamSet();
-	mSky = new LLWLParamSet();
+// 	mSky = new LLWLParamSet();
+	LLWLParamManager * wl_param_mgr = LLWLParamManager::instance();
+	static LLWLParamSet & sSky = wl_param_mgr->mCurParams;
+	mSky = &sSky;
+
 	mWaterNormal = new LLUUID();
 
 	process_packet(&buf[0]);
@@ -93,7 +96,7 @@ WindlightMessage::WindlightMessage( LLMessageSystem* msg ) :
 WindlightMessage::~WindlightMessage()
 {
 	delete mWater;
-	delete mSky;
+//	delete mSky;
 	delete mWaterNormal;
 }
 
@@ -106,8 +109,14 @@ void WindlightMessage::processWindlight(LLMessageSystem* msg, void**)
 
 	WindlightMessage* wl = new WindlightMessage(msg);
 
-	if( !wl->isValid() )
+	if (!wl)
 		return;
+
+	if(!wl->isValid() )
+	{
+		delete wl;
+		return;
+	}
 
 	std::string water = LLWaterParamManager::instance()->mCurParams.mName;
 	std::string sky = LLWLParamManager::instance()->mCurParams.mName;

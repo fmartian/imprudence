@@ -160,9 +160,9 @@
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>6a53b02a07527de680f1336e20f74f08</string>
+            <string>f5cf8d121b26f2e7944f7e63cdbff04d</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/ares-1.4.0-windows-20080723.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/ares-1.6.0-windows-20091105.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -179,30 +179,30 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>8431312679e253b36d0260f1e41a0543</string>
+            <string>a816d224526693862cfe094eb68be09d</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100624.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100820.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>8431312679e253b36d0260f1e41a0543</string>
+            <string>a816d224526693862cfe094eb68be09d</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100624.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100820.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
             <key>md5sum</key>
-            <string>8431312679e253b36d0260f1e41a0543</string>
+            <string>a816d224526693862cfe094eb68be09d</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100624.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100820.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>8431312679e253b36d0260f1e41a0543</string>
+            <string>a816d224526693862cfe094eb68be09d</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100624.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/extras/imprudence-artwork-20100820.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -289,9 +289,9 @@
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>d391c33898a5dbc7e7537bf0d9cda36e</string>
+            <string>53e5ab7affff7121a5af2f82b4d58b54</string>
             <key>url</key>
-            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/curl-7.18.1-windows-20080723.tar.bz2</uri>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/curl-7.19.6-windows-20091016.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -646,9 +646,9 @@
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>c432e168a46d782688e86bc9f7144f15</string>
+            <string>da6c3fd73a7e5c9bef768edab8a38c2f</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/gstreamer-0.10.22-windows-20100105.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/gstreamer-0.10.22-windows-20100825.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -661,30 +661,30 @@
           <key>darwin</key>
           <map>
             <key>md5sum</key>
-            <string>058bd48bca4038473bd39d4fc2fd8731</string>
+            <string>27a111bd9b12f413b577ae239c10aa7c</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-darwin-20091107.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-darwin-20100826.tar.bz2</uri>
           </map>
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>62b96bb2721798958743d92a403d122a</string>
+            <string>973aabcba37f6ee0ceab2e3d063eea84</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-linux-20091125.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-linux-20100827.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
             <key>md5sum</key>
-            <string>8e21045776401973c5034de30258ce8c</string>
+            <string>663c29f3885ab8429ad6841d80181c31</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-linux64-20091203.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-linux64-20100827.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>77b954b9313459cb7cd6046bf91de296</string>
+            <string>a5c7e5f2dbd5ed247f6e9c54f03a8b42</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-windows-20090903.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/gstreamer-plugins-windows-20100825.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -1130,16 +1130,16 @@ Copyright (C) 2004-2005 Vladimir Berezniker @ http://public.xdi.org/=vmpn
           <key>linux</key>
           <map>
             <key>md5sum</key>
-            <string>4f666348e13362befad62f0bf3e8bc5a</string>
+            <string>38abfe002ba073b6824016db98269972</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/ndofdev-linux32-0.2.1-20100711.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/ndofdev-linux32-0.3.1-20100817.tar.bz2</uri>
           </map>
           <key>linux64</key>
           <map>
             <key>md5sum</key>
-            <string>67eda3ccd65797df238f97c4efffae41</string>
+            <string>d1986d287655f159be50d661c125ba19</string>
             <key>url</key>
-            <uri>http://imprudenceviewer.org/download/libs/ndofdev-linux64-0.2.1-20100724.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/ndofdev-linux64-0.3.1-20100817.tar.bz2</uri>
           </map>
           <key>windows</key>
           <map>
@@ -1224,9 +1224,9 @@ Copyright (C) 2004-2005 Vladimir Berezniker @ http://public.xdi.org/=vmpn
           <key>windows</key>
           <map>
             <key>md5sum</key>
-            <string>7c33758dc0a047c244de03133dd76c2a</string>
+            <string>79bb92dcc79e310ff9aebf7fbe6b10e5</string>
             <key>url</key>
-            <uri>http://imprudence.s3.amazonaws.com/extras/openal-soft-1.6.372-windows-01262009.tar.bz2</uri>
+            <uri>http://imprudenceviewer.org/download/libs/openal-soft-1.12.854-windows-20100822.tar.bz2</uri>
           </map>
         </map>
       </map>
@@ -1452,6 +1452,13 @@ Copyright (C) 2004-2005 Vladimir Berezniker @ http://public.xdi.org/=vmpn
             <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/vivox-2.1.3010.6270-darwin-20090309.tar.bz2</uri>
           </map>
           <key>linux</key>
+          <map>
+            <key>md5sum</key>
+            <string>01573510dce7f380f44e561ef2f3dd9f</string>
+            <key>url</key>
+            <uri>http://s3.amazonaws.com/viewer-source-downloads/install_pkgs/vivox-2.1.3010.6270-linux-20090309.tar.bz2</uri>
+          </map>
+          <key>linux64</key>
           <map>
             <key>md5sum</key>
             <string>01573510dce7f380f44e561ef2f3dd9f</string>

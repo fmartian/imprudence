@@ -1,10 +1,10 @@
 /**
-* @file llwindlightremotectrl.h
-* @brief toolbar remote for windlight options and presets
+* @file floatervoicelicense.h
+* @brief prompts user to agree to the Vivox license in order to enable voice
 *
 * $LicenseInfo:firstyear=2009&license=viewergpl$
 *
-* Copyright (c) 2009, McCabe Maxsted
+* Copyright (c) 2010, McCabe Maxsted
 *
 * Imprudence Viewer Source Code
 * The source code in this file ("Source Code") is provided to you
@@ -28,31 +28,45 @@
 * $/LicenseInfo$
 */
 
-#ifndef LL_LLWINDLIGHTREMOTECTRL_H
-#define LL_LLWINDLIGHTREMOTECTRL_H
+#ifndef FLOATERVOICELICENSE_H
+#define FLOATERVOICELICENSE_H
 
-#include "llpanel.h"
+#include "llfloater.h"
 
-class LLWLPresetsObserver;
+#include "llmodaldialog.h"
+#include "llassetstorage.h"
+#include "llwebbrowserctrl.h"
 
-class LLWindlightRemoteCtrl : public LLPanel
+class LLButton;
+class LLRadioGroup;
+class LLVFS;
+class LLTextEditor;
+class LLUUID;
+
+class FloaterVoiceLicense : 
+	public LLModalDialog,
+	public LLWebBrowserCtrlObserver, 
+	public LLFloaterSingleton<FloaterVoiceLicense>
 {
 public:
-	LLWindlightRemoteCtrl();
-	virtual ~LLWindlightRemoteCtrl();
-	/*virtual*/ BOOL postBuild();
-	/*virtual*/ void draw();
+	FloaterVoiceLicense(const LLSD& key);
+	virtual ~FloaterVoiceLicense();
 
-	void refreshPresets();
+	BOOL postBuild();
+	
+	virtual void draw();
+
+	static void		updateAgree( LLUICtrl *, void* userdata );
+	static void		onContinue( void* userdata );
+	static void		onCancel( void* userdata );
+
+	void			setSiteIsAlive( bool alive );
+
+	virtual void	onNavigateComplete( const EventType& eventIn );
 
 private:
-	LLWLPresetsObserver*		mObserver;
-
-	void build();
-
-	static void onCommitPreset(LLUICtrl* ctrl, void* data);
-	static void onClickToggleEnvironment(void* data);
-	static void onClickPopupBtn(void* data);
+	int				mWebBrowserWindowId;
+	int				mLoadCompleteCount;
 };
 
-#endif
+#endif // FLOATERVOICELICENSE_H

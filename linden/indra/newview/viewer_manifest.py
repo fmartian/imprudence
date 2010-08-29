@@ -209,6 +209,8 @@ class WindowsManifest(ViewerManifest):
             self.path("LICENSE-libraries.txt")
             self.end_prefix("../..")
 
+		
+        self.path("imprudence.url")
 
         self.path("featuretable.txt")
 
@@ -247,13 +249,14 @@ class WindowsManifest(ViewerManifest):
         self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst=self.final_exe() + ".config")
 
         # We need this one too, so that llkdu loads at runtime - DEV-41194
-        self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="llkdu.dll.2.config")
+        #self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="llkdu.dll.2.config")
+        self.path("llkdu.dll.2.config")
 
         # We need this one too, so that win_crash_logger.exe loads at runtime - DEV-19004
-        self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="win_crash_logger.exe.config")
+        #self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="win_crash_logger.exe.config")
 
         # same thing for auto-updater.
-        self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="updater.exe.config")
+        #self.path(src="%s/imprudence-bin.exe.config" % self.args['configuration'], dst="updater.exe.config")
 
         # Mozilla runtime DLLs (CP)
         if self.prefix(src="../../libraries/i686-win32/lib/release", dst=""):
@@ -284,20 +287,19 @@ class WindowsManifest(ViewerManifest):
         # Mozilla hack to get it to accept newer versions of msvc*80.dll than are listed in manifest
         # necessary as llmozlib2-vc80.lib refers to an old version of msvc*80.dll - can be removed when new version of llmozlib is built - Nyx
         # Vivox runtimes
-        #if self.prefix(src="vivox-runtime/i686-win32", dst=""):
+        if self.prefix(src="vivox-runtime/i686-win32", dst=""):
         #    self.path("alut.dll")
-        #    self.path("wrap_oal.dll")
-
-        #    self.path("SLVoice.exe")
+            self.path("wrap_oal.dll")
+            self.path("SLVoice.exe")
         #    self.path("SLVoiceAgent.exe")
         #    self.path("libeay32.dll")
         #    self.path("srtp.dll")
         #    self.path("ssleay32.dll")
         #    self.path("tntk.dll")
-        #    self.path("vivoxsdk.dll")
-        #    self.path("ortp.dll")
+            self.path("vivoxsdk.dll")
+            self.path("ortp.dll")
 
-        #    self.end_prefix()
+            self.end_prefix()
 
         # Gstreamer plugins
         if self.prefix(src="lib/gstreamer-plugins", dst=""):
@@ -551,6 +553,7 @@ class DarwinManifest(ViewerManifest):
                 self.path("libgstvideo-0.10.dylib")
 
                 self.path("libxml2.2.dylib")
+                self.path("libfaad.2.dylib")
                 self.path("libintl.3.dylib")
                 self.path("libjpeg.62.dylib")
                 self.path("libpng12.0.dylib")
@@ -628,6 +631,7 @@ class DarwinManifest(ViewerManifest):
                     self.path("libgstdecodebin2.so")
                     self.path("libgstdeinterlace2.so")
                     self.path("libgstequalizer.so")
+                    self.path("libgstfaad.so")
                     self.path("libgstffmpeg.so")
                     self.path("libgstffmpegcolorspace.so")
                     self.path("libgstffmpegscale.so")
@@ -684,11 +688,11 @@ class DarwinManifest(ViewerManifest):
 
 
                 # SLVoice and vivox lols
-                #self.path("vivox-runtime/universal-darwin/libalut.dylib", "libalut.dylib")
-                #self.path("vivox-runtime/universal-darwin/libopenal.dylib", "libopenal.dylib")
-                #self.path("vivox-runtime/universal-darwin/libortp.dylib", "libortp.dylib")
-                #self.path("vivox-runtime/universal-darwin/libvivoxsdk.dylib", "libvivoxsdk.dylib")
-                #self.path("vivox-runtime/universal-darwin/SLVoice", "SLVoice")
+                self.path("vivox-runtime/universal-darwin/libalut.dylib", "libalut.dylib")
+                self.path("vivox-runtime/universal-darwin/libopenal.dylib", "libopenal.dylib")
+                self.path("vivox-runtime/universal-darwin/libortp.dylib", "libortp.dylib")
+                self.path("vivox-runtime/universal-darwin/libvivoxsdk.dylib", "libvivoxsdk.dylib")
+                self.path("vivox-runtime/universal-darwin/SLVoice", "SLVoice")
                 #self.path("vivox-runtime/universal-darwin/SLVoiceAgent.app", "SLVoiceAgent.app")
 
                 #libfmodwrapper.dylib
@@ -808,7 +812,7 @@ class LinuxManifest(ViewerManifest):
         self.path("res/imprudence_icon.png","imprudence_icon.png")
         if self.prefix("linux_tools", dst=""):
             #self.path("client-readme.txt","README-linux.txt")
-            #self.path("client-readme-voice.txt","README-linux-voice.txt")
+            self.path("client-readme-voice.txt","README-linux-voice.txt")
             #self.path("client-readme-joystick.txt","README-linux-joystick.txt")
             self.path("wrapper.sh","imprudence")
             self.path("handle_secondlifeprotocol.sh")
@@ -940,6 +944,7 @@ class Linux_i686Manifest(LinuxManifest):
             self.path("libgstvideo-0.10.so.0")
 
             # Gstreamer plugin dependencies
+	    self.path("libfaad.so.0")
             self.path("libogg.so.0")
             self.path("libtheora.so.0")
             self.path("libvorbis.so.0")
@@ -959,6 +964,7 @@ class Linux_i686Manifest(LinuxManifest):
                 self.path("libgstdecodebin2.so")
                 self.path("libgstdecodebin.so")
                 self.path("libgstesd.so")
+                self.path("libgstfaad.so")
                 self.path("libgstffmpeg.so")
                 self.path("libgstgnomevfs.so")
                 self.path("libgsticydemux.so")
@@ -985,11 +991,17 @@ class Linux_i686Manifest(LinuxManifest):
             
             self.end_prefix("lib")
 
-            # Vivox runtimes
-            #if self.prefix(src="vivox-runtime/i686-linux", dst="bin"):
-            #        self.path("SLVoice")
-            #        self.end_prefix()
-            
+            # Vivox runtimes and libs
+            if self.prefix(src="vivox-runtime/i686-linux", dst="bin"):
+                self.path("SLVoice")
+                self.end_prefix("bin")
+
+            if self.prefix(src="vivox-runtime/i686-linux", dst="lib"):
+                self.path("libalut.so")
+                self.path("libortp.so")
+                self.path("libvivoxsdk.so")
+                self.end_prefix("lib")
+
 
 class Linux_x86_64Manifest(LinuxManifest):
     def construct(self):
@@ -1022,7 +1034,7 @@ class Linux_x86_64Manifest(LinuxManifest):
             self.path("libpng12.so.0")
             self.path("libopenjpeg.so.2")
             self.path("libxml2.so.2")
-            self.path("libz.so.1")
+            #self.path("libz.so.1") #not needed
 
             # OpenAL
             self.path("libopenal.so.1")
@@ -1060,6 +1072,7 @@ class Linux_x86_64Manifest(LinuxManifest):
             self.path("libgstvideo-0.10.so.0")
 
             # Gstreamer plugin dependencies
+            self.path("libfaad.so.0")
             self.path("libogg.so.0")
             self.path("libtheora.so.0")
             self.path("libvorbis.so.0")
@@ -1079,6 +1092,7 @@ class Linux_x86_64Manifest(LinuxManifest):
                 self.path("libgstdecodebin2.so")
                 self.path("libgstdecodebin.so")
                 self.path("libgstesd.so")
+		self.path("libgstfaad.so")
                 self.path("libgstffmpeg.so")
                 self.path("libgstffmpegcolorspace.so")
                 self.path("libgstgnomevfs.so")
@@ -1112,11 +1126,18 @@ class Linux_x86_64Manifest(LinuxManifest):
 #	    self.path("libortp.so")
 #	    self.path("libuuid.so.1")
 #        self.end_prefix("lib32")
-            # Vivox runtimes
-            #if self.prefix(src="vivox-runtime/i686-linux", dst="bin"):
-            #        self.path("SLVoice")
-            #        self.end_prefix()
-            
+
+
+            # Vivox runtimes and libs
+            if self.prefix(src="vivox-runtime/i686-linux", dst="bin"):
+                self.path("SLVoice")
+                self.end_prefix("bin")
+
+            if self.prefix(src="vivox-runtime/i686-linux", dst="lib32"):
+                self.path("libalut.so")
+                self.path("libortp.so")
+                self.path("libvivoxsdk.so")
+                self.end_prefix("lib32")
 
 if __name__ == "__main__":
     main()

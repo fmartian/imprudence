@@ -1188,9 +1188,6 @@ bool LLAppViewer::cleanup()
 
 	llinfos << "Viewer disconnected" << llendflush;
 
-	//this deletes all your buddies
-	LLAvatarTracker::instance().reset();
-
 	if (mQuitRequested)
 	{
 		display_cleanup();
@@ -1832,6 +1829,12 @@ bool LLAppViewer::initConfiguration()
 	LLFirstUse::addConfigVariable("FirstMedia");
 	LLFirstUse::addConfigVariable("FirstLoginScreen");
 		
+// [RLVa:KB] - Checked: RLVa-1.0.3a (2009-09-10) | Added: RLVa-1.0.3a
+	//LLFirstUse::addConfigVariable(RLV_SETTING_FIRSTUSE_DETACH);
+	//LLFirstUse::addConfigVariable(RLV_SETTING_FIRSTUSE_ENABLEWEAR);
+	//LLFirstUse::addConfigVariable(RLV_SETTING_FIRSTUSE_FARTOUCH);
+// [/RLVa:KB]
+
 	// - read command line settings.
 	LLControlGroupCLP clp;
 	std::string	cmd_line_config	= gDirUtilp->getExpandedFilename(LL_PATH_APP_SETTINGS,
@@ -3736,6 +3739,8 @@ void LLAppViewer::idleShutdown()
 	// close IM interface
 	if(gIMMgr)
 	{
+		// Save group chat ignore list -- MC
+		gIMMgr->saveIgnoreGroup();
 		gIMMgr->disconnectAllSessions();
 	}
 	

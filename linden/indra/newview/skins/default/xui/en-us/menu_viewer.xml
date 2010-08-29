@@ -503,6 +503,11 @@
     <menu_item_call name="Set Busy" label="Set Busy">
       <on_click function="World.SetBusy" userdata="" />
     </menu_item_call>
+    <menu_item_check name="Auto-Respond to IMs" label="Auto-Respond to IMs">
+      <on_click function="World.ToggleAutoResponse" userdata="" />
+      <on_check function="World.CheckAutoResponse" userdata="" />
+    </menu_item_check>
+    <menu_item_separator />
     <menu_item_call name="Stop Animating My Avatar" enabled="false"
                     label="Stop Animating My Avatar">
       <on_click function="Tools.StopAllAnimations" userdata="" />
@@ -963,6 +968,9 @@
                     shortcut="control|alt|s">
       <on_click function="Advanced.ToggleSit" userdata="" />
       <on_Check function="Advanced.CheckSit" userdata="" />
+    </menu_item_call>
+    <menu_item_call name="Teleport to Ground" label="Teleport to Ground">
+      <on_click function="Advanced.TPToGround" userdata="" />
     </menu_item_call>
     <menu_item_check label="Phantom Avatar" name="Phantom" 
                      shortcut="control|alt|p">
@@ -1587,6 +1595,11 @@
         <on_click function="Advanced.PrintTextureMemoryStats"
                   userdata="" />
       </menu_item_call>
+      <menu_item_call name="Clear Cached Group Info"
+                  label="Clear Cached Group Info">
+        <on_click function="Advanced.ClearGroupCache"
+                  userdata="" />
+      </menu_item_call>
       <menu_item_separator />
       <menu_item_check name="Debug SelectMgr"
                        label="Debug SelectMgr">
@@ -2142,11 +2155,6 @@
                 userdata="ShowCrosshairs" />
       <on_check control="ShowCrosshairs" />
     </menu_item_check>
-    <menu_item_call name="Clear Group Cache"
-                    label="Clear Group Cache">
-      <on_click function="Advanced.ClearGroupCache"
-                userdata="" />
-    </menu_item_call>
 
     <menu_item_separator />
 
@@ -2157,8 +2165,8 @@
       <on_check control="ShowConsoleWindow" />
     </menu_item_check>
 
-    <menu_item_check name="Restrained Life Support"
-                     label="Restrained Life Support">
+    <menu_item_check name="Restrained Love Support"
+                     label="Restrained Love Support">
       <on_click function="RLVa.Main.Toggle" />
       <on_check function="RLVa.Main.Enabled" />
     </menu_item_check>
