@@ -978,7 +978,10 @@ BOOL LLWindowWin32::switchContext(BOOL fullscreen, const LLCoordScreen &size, BO
 		window_rect.top = (long) (posp ? posp->mY : 0);
 		window_rect.bottom = (long) height + window_rect.top;
 		// Window with an edge
-		dw_ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+		if (mFlags & WIN_FLAGS_FLOATER)
+		    dw_ex_style = WS_EX_TOPMOST;
+		else
+		    dw_ex_style = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 		dw_style = WS_OVERLAPPEDWINDOW;
 	}
 
