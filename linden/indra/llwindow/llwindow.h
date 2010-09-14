@@ -104,7 +104,7 @@ public:
 	};
 	enum EFlags
 	{
-		// currently unused
+		WIN_FLAGS_FLOATER = 1
 	};
 public:
 	virtual void setWindowTitle(std::string &title) {} ;
