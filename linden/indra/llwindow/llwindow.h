@@ -197,7 +197,10 @@ public:
 
 // return the platform-specific window reference we use to initialize llmozlib (HWND on Windows, WindowRef on the Mac, Gtk window on Linux)
 	virtual void *getMediaWindow();
-	
+
+	// Activate the OpenGL context
+	virtual BOOL activateContext() { return FALSE; };
+
 	// control platform's Language Text Input mechanisms.
 	virtual void allowLanguageTextInput(LLPreeditor *preeditor, BOOL b) {}
 	virtual void setLanguageTextInput( const LLCoordGL & pos ) {};

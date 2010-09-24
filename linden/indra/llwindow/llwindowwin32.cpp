@@ -1398,6 +1398,13 @@ BOOL LLWindowWin32::switchContext(BOOL fullscreen, const LLCoordScreen &size, BO
 	return TRUE;
 }
 
+BOOL LLWindowWin32::activateContext(void)
+{
+	if (wglGetCurrentContext() != mhRC)
+	    return wglMakeCurrent(mhDC, mhRC);
+	return TRUE;
+}
+
 void LLWindowWin32::moveWindow( const LLCoordScreen& position, const LLCoordScreen& size )
 {
 	if( mIsMouseClipping )

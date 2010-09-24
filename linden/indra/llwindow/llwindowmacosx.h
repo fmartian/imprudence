@@ -110,6 +110,8 @@ public:
 	/*virtual*/ void *getMediaWindow();
 	/*virtual*/ void bringToFront() {};
 	
+	/*virtual*/ BOOL activateContext(void);
+
 	/*virtual*/ void allowLanguageTextInput(LLPreeditor *preeditor, BOOL b);
 	/*virtual*/ void interruptLanguageTextInput();
 	/*virtual*/ void spawnWebBrowser(const std::string& escaped_url);

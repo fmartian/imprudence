@@ -98,6 +98,8 @@ public:
 
 	/*virtual*/ void *getPlatformWindow() { return 0; };
 	/*virtual*/ void bringToFront() {};
+
+	/*virtual*/ BOOL activateContext(void) { return FALSE; }; 
 	
 	LLWindowMesaHeadless(const std::string& title, const std::string& name, S32 x, S32 y, S32 width, S32 height,
 				  U32 flags,  BOOL fullscreen, BOOL clearBg,

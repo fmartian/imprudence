@@ -124,6 +124,8 @@ public:
 	/*virtual*/ void *getPlatformWindow();
 	/*virtual*/ void bringToFront();
 
+	/*virtual*/ BOOL activateContext();
+
 	/*virtual*/ void spawnWebBrowser(const std::string& escaped_url);
 	
 	static std::vector<std::string> getDynamicFallbackFontList();

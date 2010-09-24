@@ -808,6 +808,12 @@ BOOL LLWindowMacOSX::createContext(int x, int y, int width, int height, int bits
 	return TRUE;
 }
 
+BOOL LLWindowMacOSX::activateContext(void)
+{
+	if (aglGetCurrentContext() != mContext)
+		return aglSetCurrentContext(mContext);
+	return TRUE;
+}
 
 // changing fullscreen resolution, or switching between windowed and fullscreen mode.
 BOOL LLWindowMacOSX::switchContext(BOOL fullscreen, const LLCoordScreen &size, BOOL disable_vsync, const LLCoordScreen * const posp)
