@@ -107,6 +107,8 @@ public:
 	/*virtual*/ void bringToFront();
 	/*virtual*/ void focusClient();
 
+	/*virtual*/ BOOL activateContext(void);
+
 	/*virtual*/ void allowLanguageTextInput(LLPreeditor *preeditor, BOOL b);
 	/*virtual*/ void setLanguageTextInput( const LLCoordGL & pos );
 	/*virtual*/ void updateLanguageTextInputArea();

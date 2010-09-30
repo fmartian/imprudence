@@ -794,6 +794,11 @@ BOOL LLWindowSDL::switchContext(BOOL fullscreen, const LLCoordScreen &size, BOOL
 	return result;
 }
 
+BOOL LLWindowSDL::activateContext(void)
+{
+	return TRUE;
+}
+
 void LLWindowSDL::destroyContext()
 {
 	llinfos << "destroyContext begins" << llendl;

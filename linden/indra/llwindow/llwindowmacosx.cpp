@@ -474,7 +474,7 @@ BOOL LLWindowMacOSX::createContext(int x, int y, int width, int height, int bits
 			mWindowTitle,
 			false,				// Create the window invisible.  Whoever calls createContext() should show it after any moving/resizing.
 			//		noGrowDocProc,		// Window with no grow box and no zoom box
-			zoomDocProc,		// Window with a grow box and a zoom box
+			(mFlags & WIN_FLAGS_FLOATER) ? floatProc : zoomDocProc,		// Window with a grow box and a zoom box
 			//		zoomNoGrow,			// Window with a zoom box but no grow box
 			kFirstWindowOfClass,
 			true,
@@ -808,6 +808,12 @@ BOOL LLWindowMacOSX::createContext(int x, int y, int width, int height, int bits
 	return TRUE;
 }
 
+BOOL LLWindowMacOSX::activateContext(void)
+{
+	if (aglGetCurrentContext() != mContext)
+		return aglSetCurrentContext(mContext);
+	return TRUE;
+}
 
 // changing fullscreen resolution, or switching between windowed and fullscreen mode.
 BOOL LLWindowMacOSX::switchContext(BOOL fullscreen, const LLCoordScreen &size, BOOL disable_vsync, const LLCoordScreen * const posp)
